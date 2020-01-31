@@ -1,0 +1,25 @@
+@startuml
+
+left to right direction
+skinparam packageStyle rectangle
+
+actor carOwner
+actor car
+actor chargingStation
+
+rectangle InnoElectric {
+    carOwner -- (Register Vehicle on Website)
+    (Register Vehicle on Website) -- chargingStation
+
+    car -- (Connect to Network)
+    (Connect to Network) -- chargingStation
+    car -- (Authorize Vehicle)
+    (Authorize Vehicle) -- chargingStation
+    (Authorize Vehicle) .> (Send JSON file) : include
+    car -- (Electrical charging)
+    (Electrical charging) -- chargingStation
+    car -- (Billing)
+    (Billing) -- chargingStation
+}
+
+@enduml

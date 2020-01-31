@@ -1,0 +1,23 @@
+@startuml
+
+actor Car
+
+Car -> ChargingStation: Send JSON File
+ChargingStation -> InnoElectricDatabase: Verify Details
+
+alt if car is registered
+    InnoElectricDatabase --> ChargingStation: Details OK
+	ChargingStation --> Car: Request charging details
+	
+else if car is not registered
+    InnoElectricDatabase --> ChargingStation: Car not registered
+	ChargingStation --> Car: Sessions closed
+end
+
+Car -> ChargingStation: Charging amount entered
+ChargingStation --> Car: Send billing information
+Car --> ChargingStation: Pay the bill
+ChargingStation --> InnoElectricDatabase: Store transaction
+
+
+@enduml

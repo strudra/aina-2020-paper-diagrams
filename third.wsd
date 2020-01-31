@@ -1,0 +1,37 @@
+@startuml
+
+top to bottom direction
+
+class Owner {
+    id: String
+    name: String
+    email: String
+    phoneNumber: String
+}
+
+class ChargingStation {
+   id: String
+   name: String
+   address: String
+}
+
+class ChargingStationHasCar {
+    chargingStationId: String
+    carId: String
+    carOwnerId: String
+}
+
+class Car {
+    id: String
+    modelName: String
+    modelYear: Year
+    datePurchased: Date
+    ownerId: String
+}
+
+Owner "0..*" -- "1" Car
+Car "1" -- "1..*" ChargingStationHasCar
+ChargingStation "1" -- "1..*" ChargingStationHasCar
+
+
+@enduml

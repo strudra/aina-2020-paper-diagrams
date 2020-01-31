@@ -1,0 +1,50 @@
+@startuml
+
+class Server <<Java Class>> {
+ -ss: ServerSocket
+ ~Server(int)
+ +main(String[]): Void
+}
+
+class TcpThread <<Java Class>> {
+ ~socket: Socket
+ ~Sinput: InputStream
+ ~Soutput: OutputStream
+ ~OSinput: ObjectInputStream
+ ~OSoutput: ObjectOutputStream
+ ~Name: String
+ ~Email: String
+ ~Phone: String
+ ~PID: String
+ ~ModelName: String
+ ~ModelYear: Integer
+ ~PurDate: Date
+ ~CarId: Integer
+ ~TcpThread(Socket): Void
+ +run(): Void
+ ~checkCar(File): Boolean
+ ~parseFile(File): Void
+ ~checkDatabase(): Boolean
+}
+
+class ByteStream <<Java Class>> {
+    +ByteStream()
+    -toByteArray(Integer): Byte[]
+    -toInt(Byte[]): Integer
+    +toInt(InputStream): Integer
+    +toString(InputStream): String
+    -toString(InputStream, Integer): String
+    +toStream(OutputStream, Integer): Void
+    +toStream(OutputStream, String): Void
+    -toByteArray(InputStream, Integer): Byte[]
+    -toFile(InputStream, FileOutputStream, Integer, Integer, File): Void
+    -toFile(InputStream, File, Integer): Void
+    +toFile(InputStream, File): Void
+    +toStream(OutputStream, File): Void
+    -convertOutputStreamToString(InputStream): String
+}
+
+Server +-- TcpThread
+TcpThread ..> ByteStream
+
+@enduml

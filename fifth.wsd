@@ -1,0 +1,29 @@
+class MyClient <<Java Class>> {
+    ~Sinput: InputStream
+    ~Soutput: InputStream
+    ~OSinput: ObjectInputStream
+    ~OSoutput: ObjectOutputStream
+    ~s: Socket
+    ~MyClient(Integer): Void
+    +main(String[]): Void
+
+}
+
+class ByteStreamClient <<Java Class>> {
+    +ByteStream()
+    -toByteArray(Integer): Byte[]
+    -toInt(Byte[]): Integer
+    +toInt(InputStream): Integer
+    +toString(InputStream): String
+    -toString(InputStream, Integer): String
+    +toStream(OutputStream, Integer): Void
+    +toStream(OutputStream, String): Void
+    -toByteArray(InputStream, Integer): Byte[]
+    -toFile(InputStream, FileOutputStream, Integer, Integer, File): Void
+    -toFile(InputStream, File, Integer): Void
+    +toFile(InputStream, File): Void
+    +toStream(OutputStream, File): Void
+    -convertOutputStreamToString(InputStream): String
+}
+
+MyClient ..> ByteStreamClient
